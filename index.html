@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adithi Venkatakrishnan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lavender: #c4b5d4;
+    --lavender-pale: #ede8f4;
+    --lavender-deep: #8b6fa8;
+    --blush: #e8d0d8;
+    --blush-deep: #c4818e;
+    --cream: #faf6f2;
+    --warm-white: #fefcfa;
+    --ink: #1c1416;
+    --ink-muted: #4a3840;
+    --ink-faint: #7a6870;
+    --muted-lilac: #b8a8c8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    mix-blend-mode: multiply;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--lavender-deep); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(8rem, 22vw, 22rem);
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(196, 181, 212, 0.3);
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: -0.04em;
+  }
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender-deep);
+    margin-bottom: 1rem;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    position: relative;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--lavender-deep);
+  }
+  .hero-sub {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .hero-desc {
+    max-width: 340px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+  }
+  .hero-socials {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: auto;
+  }
+  .hero-socials a {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+    padding-bottom: 2px;
+  }
+  .hero-socials a:hover {
+    color: var(--lavender-deep);
+    border-color: var(--lavender-deep);
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .hero-scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--lavender-deep), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    background: var(--lavender-deep);
+    padding: 0.8rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex;
+    animation: marqueeScroll 18s linear infinite;
+  }
+  .marquee-item {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--lavender-pale);
+    padding: 0 2.5rem;
+  }
+  .marquee-dot {
+    color: var(--blush);
+    opacity: 0.6;
+  }
+  @keyframes marqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--lavender-deep);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--lavender);
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-big-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .about-big-text em { font-style: italic; color: var(--lavender-deep); }
+  .about-body {
+    padding-top: 1rem;
+  }
+  .about-body p {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: var(--ink-muted);
+    margin-bottom: 1.2rem;
+  }
+  .about-dict {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--lavender-pale);
+    padding-top: 1.5rem;
+  }
+  .about-dict h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .about-dict .phonetic {
+    font-size: 0.78rem;
+    color: var(--lavender-deep);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+  }
+  .about-dict .pos {
+    font-size: 0.72rem;
+    font-style: italic;
+    color: var(--ink-faint);
+    margin-bottom: 0.4rem;
+  }
+  .about-dict .def {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin-left: 1rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+  }
+
+  /* ── SPLIT HEADLINE ── */
+  .big-split {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 3rem;
+    background: var(--warm-white);
+  }
+  .split-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 11vw, 12rem);
+    font-weight: 300;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--ink);
+    display: block;
+  }
+  .split-line.filled { -webkit-text-stroke: 0; color: var(--ink); }
+  .split-line.accent { -webkit-text-stroke: 1.5px var(--lavender-deep); }
+
+  /* ── WHAT I DO ── */
+  .what-i-do { background: var(--cream); }
+  .wid-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--lavender-pale);
+  }
+  .wid-item {
+    padding: 2.5rem 2rem 2.5rem 0;
+    border-bottom: 1px solid var(--lavender-pale);
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .wid-item:nth-child(odd) { padding-right: 2rem; border-right: 1px solid var(--lavender-pale); }
+  .wid-item:hover { background: var(--lavender-pale); }
+  .wid-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--muted-lilac);
+    margin-bottom: 1rem;
+  }
+  .wid-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+  }
+  .wid-desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 280px;
+  }
+  .wid-arrow {
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    font-size: 1.2rem;
+    color: var(--lavender-deep);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .wid-item:hover .wid-arrow { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+  /* ── PROJECTS HEADLINE ── */
+  .projects-intro {
+    background: var(--warm-white);
+    padding: 6rem 3rem 2rem;
+  }
+
+  /* ── PROJECTS GRID ── */
+  .projects-grid-section {
+    background: var(--warm-white);
+    padding: 2rem 3rem 6rem;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .project-card {
+    border: 1px solid var(--lavender-pale);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: var(--cream);
+    cursor: pointer;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(139, 111, 168, 0.12);
+  }
+  .project-card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--lavender-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .project-card-img .placeholder-art {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .project-card-body {
+    padding: 1.2rem 1.2rem 1.5rem;
+  }
+  .project-cat {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lavender-deep);
+    margin-bottom: 0.4rem;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .project-desc {
+    font-size: 0.78rem;
+    line-height: 1.65;
+    color: var(--ink-muted);
+  }
+
+  /* ── EDUCATION ── */
+  .education { background: var(--cream); }
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .edu-item {
+    border-top: 1px solid var(--lavender-pale);
+    padding-top: 1.5rem;
+  }
+  .edu-year {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lavender-deep);
+    margin-bottom: 0.5rem;
+  }
+  .edu-school {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .edu-degree {
+    font-size: 0.82rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  /* ── SKILLS / TOOLS ── */
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .skill-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--lavender);
+    border-radius: 100px;
+    color: var(--lavender-deep);
+    background: transparent;
+    transition: background 0.25s, color 0.25s;
+  }
+  .skill-tag:hover {
+    background: var(--lavender-deep);
+    color: white;
+    border-color: var(--lavender-deep);
+  }
+
+  /* ── BACKGROUND ── */
+  .background-section {
+    background: var(--ink);
+    padding: 6rem 3rem;
+    color: var(--cream);
+  }
+  .bg-section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted-lilac);
+    margin-bottom: 1.5rem;
+  }
+  .bg-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--lavender-pale);
+    max-width: 700px;
+    margin-bottom: 2.5rem;
+  }
+  .bg-headline em {
+    font-style: italic;
+    color: var(--lavender);
+  }
+  .bg-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .bg-body p {
+    font-size: 0.88rem;
+    line-height: 1.85;
+    color: rgba(250, 246, 242, 0.65);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(196, 181, 212, 0.15);
+  }
+  .footer-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 6vw, 6rem);
+    font-weight: 300;
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(196, 181, 212, 0.3);
+    letter-spacing: -0.04em;
+  }
+  .footer-right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+  }
+  .footer-right a {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-lilac);
+    transition: color 0.3s;
+  }
+  .footer-right a:hover { color: var(--lavender-pale); }
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: rgba(196, 181, 212, 0.3);
+    margin-top: 1rem;
+  }
+
+  /* ── FADE-IN ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 0 1.5rem 3rem; }
+    .hero-bg-text { font-size: 30vw; }
+    .about-grid, .bg-body, .edu-grid { grid-template-columns: 1fr; }
+    .wid-grid { grid-template-columns: 1fr; }
+    .wid-item:nth-child(odd) { border-right: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid-section { padding: 2rem 1.5rem 4rem; }
+    .big-split { padding: 3rem 1.5rem; }
+    footer { flex-direction: column; gap: 2rem; align-items: flex-start; }
+    .footer-right { align-items: flex-start; text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">A.V.</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#what-i-do">What I Do</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="https://mylifeadithi.my.canva.site/brand-marketting" target="_blank">Portfolio</a></li>
+    <li><a href="mailto:vkadithi123@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text" aria-hidden="true">ADITHI</div>
+
+  <div class="hero-tag">Brand Marketer &nbsp;·&nbsp; D1 Athlete &nbsp;·&nbsp; Bangalore</div>
+  <h1 class="hero-name">
+    Adithi<br /><em>Venkata</em><br />krishnan
+  </h1>
+
+  <div class="hero-sub">
+    <p class="hero-desc">
+      BBA Marketing graduate, Sam Houston State University. Four-year NCAA Division I tennis athlete. Building brands at the intersection of culture, sport, and story.
+    </p>
+    <div class="hero-socials">
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://mylifeadithi.my.canva.site/brand-marketting" target="_blank">Portfolio</a>
+      <a href="mailto:vkadithi123@gmail.com">Email</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <!-- duplicated for seamless loop -->
+    <span class="marquee-item">Brand Marketing</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">D1 NCAA Athlete</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Sports Industry</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Campaign Strategy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Content Creation</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Identity</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Bangalore &amp; New York</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Marketing</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">D1 NCAA Athlete</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Sports Industry</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Campaign Strategy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Content Creation</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Identity</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Bangalore &amp; New York</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- SPLIT TEXT — "ABOUT ME" -->
+<div class="big-split" aria-hidden="true">
+  <span class="split-line">ABOUT</span>
+  <span class="split-line filled">ME</span>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="section-label">001 — Who I am</div>
+  <div class="about-grid">
+    <div class="about-big-text reveal">
+      A <em>marketer</em> who's<br />lived the sport<br />from the inside.
+    </div>
+    <div class="about-body reveal">
+      <p>
+        I'm a BBA Marketing graduate from Sam Houston State University (May 2026) and a former NCAA Division I tennis athlete — four years competing at No. 1 singles. That combination shaped how I think: data-driven, competitive, and always tuned to what moves people.
+      </p>
+      <p>
+        I speak four languages (English, Tamil, Kannada, Hindi), which means I understand brand voice across cultures — not just markets. I'm drawn to the intersection of sports, lifestyle, and identity: where brands stop selling products and start building belonging.
+      </p>
+      <p>
+        Currently based in Bangalore. Eyes on New York.
+      </p>
+
+      <div class="about-dict">
+        <h3>Adithi</h3>
+        <div class="phonetic">/ˈaː.di.tʰi/</div>
+        <div class="pos">noun</div>
+        <div class="def">1. Brand strategist with an athlete's instinct</div>
+        <div class="pos">verb</div>
+        <div class="def">1. To build campaigns that actually connect</div>
+        <div class="def">2. To out-hustle, out-create, out-last</div>
+        <div class="pos">adjective</div>
+        <div class="def">1. Detail-obsessed, culturally fluent, relentlessly curious</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO HEADLINE -->
+<div class="big-split">
+  <span class="split-line accent">WHAT</span>
+  <span class="split-line">I DO</span>
+</div>
+
+<!-- WHAT I DO -->
+<section id="what-i-do" class="what-i-do">
+  <div class="section-label">002 — Expertise</div>
+  <div class="wid-grid">
+    <div class="wid-item reveal">
+      <div class="wid-num">01</div>
+      <div class="wid-title">Brand Marketing<br />&amp; Strategy</div>
+      <p class="wid-desc">Positioning brands to resonate with the right audience — from identity systems to go-to-market campaigns grounded in real consumer insight.</p>
+      <span class="wid-arrow">→</span>
+    </div>
+    <div class="wid-item reveal">
+      <div class="wid-num">02</div>
+      <div class="wid-title">Sports &amp;<br />Culture Marketing</div>
+      <p class="wid-desc">Translating athlete culture into brand equity. I've lived it — I know what makes sports audiences lean in and what makes them leave.</p>
+      <span class="wid-arrow">→</span>
+    </div>
+    <div class="wid-item reveal">
+      <div class="wid-num">03</div>
+      <div class="wid-title">Social Media &amp;<br />Content Strategy</div>
+      <p class="wid-desc">Building platforms with a point of view — aesthetic content creation, community storytelling, and data-informed publishing strategy.</p>
+      <span class="wid-arrow">→</span>
+    </div>
+    <div class="wid-item reveal">
+      <div class="wid-num">04</div>
+      <div class="wid-title">Campaign &amp;<br />Event Management</div>
+      <p class="wid-desc">From concept to execution — IMC plans, experiential events, and integrated campaigns with clear ROI tied to brand and business goals.</p>
+      <span class="wid-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS HEADLINE -->
+<div class="big-split projects-intro" id="projects" style="padding-bottom: 0;">
+  <span class="split-line">PRO</span>
+  <span class="split-line filled">JECTS</span>
+</div>
+
+<!-- PROJECTS GRID -->
+<div class="projects-grid-section">
+  <div class="section-label" style="margin-bottom: 2rem;">003 — Selected Work</div>
+  <div class="projects-grid">
+
+    <!-- Project 1 -->
+    <div class="project-card reveal" onclick="window.open('https://mylifeadithi.my.canva.site/brand-marketting','_blank')">
+      <div class="project-card-img">
+        <svg class="placeholder-art" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#ede8f4"/>
+          <rect x="60" y="60" width="280" height="180" rx="4" fill="none" stroke="#c4b5d4" stroke-width="1.5"/>
+          <rect x="80" y="100" width="100" height="60" rx="2" fill="#c4b5d4" opacity="0.5"/>
+          <rect x="200" y="100" width="120" height="14" rx="2" fill="#8b6fa8" opacity="0.3"/>
+          <rect x="200" y="122" width="90" height="10" rx="2" fill="#8b6fa8" opacity="0.2"/>
+          <rect x="200" y="140" width="110" height="10" rx="2" fill="#8b6fa8" opacity="0.2"/>
+          <circle cx="200" cy="200" r="25" fill="none" stroke="#c4b5d4" stroke-width="1.5"/>
+          <text x="200" y="205" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" fill="#8b6fa8">PDCSE</text>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <div class="project-cat">Brand Campaign</div>
+        <div class="project-title">PDCSE Campaign</div>
+        <p class="project-desc">Mock brand campaign for the Padukone-Dravid Centre for Sports Excellence — positioning India's elite sports institution for a new generation.</p>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card reveal" onclick="window.open('https://mylifeadithi.my.canva.site/brand-marketting','_blank')">
+      <div class="project-card-img">
+        <svg class="placeholder-art" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#f5e8ef"/>
+          <rect x="50" y="40" width="130" height="220" rx="3" fill="#e8d0d8" opacity="0.8"/>
+          <rect x="200" y="70" width="150" height="180" rx="3" fill="#c4818e" opacity="0.2"/>
+          <rect x="70" y="60" width="90" height="120" rx="2" fill="#c4818e" opacity="0.35"/>
+          <text x="265" y="165" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-style="italic" fill="#c4818e" opacity="0.7">NISHO</text>
+          <text x="265" y="188" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-style="italic" fill="#c4818e" opacity="0.7">RAMA</text>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <div class="project-cat">Fashion · Gen Z</div>
+        <div class="project-title">NISHORAMA Brand Identity</div>
+        <p class="project-desc">Full brand identity and campaign strategy for a Gen Z Indian fashion brand — visual language, tone of voice, and launch campaign.</p>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card reveal" onclick="window.open('https://mylifeadithi.my.canva.site/brand-marketting','_blank')">
+      <div class="project-card-img">
+        <svg class="placeholder-art" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#e8f0f8"/>
+          <rect x="40" y="50" width="320" height="200" rx="4" fill="none" stroke="#a0b8d8" stroke-width="1"/>
+          <rect x="40" y="50" width="320" height="45" rx="4" fill="#b5c8e0" opacity="0.5"/>
+          <text x="200" y="79" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="16" fill="#185FA5" opacity="0.7">Red Bull Consumer Research</text>
+          <rect x="60" y="115" width="60" height="110" rx="2" fill="#378ADD" opacity="0.4"/>
+          <rect x="140" y="140" width="60" height="85" rx="2" fill="#378ADD" opacity="0.3"/>
+          <rect x="220" y="100" width="60" height="125" rx="2" fill="#378ADD" opacity="0.5"/>
+          <rect x="300" y="130" width="40" height="95" rx="2" fill="#378ADD" opacity="0.25"/>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <div class="project-cat">Research · Analytics</div>
+        <div class="project-title">Red Bull Consumer Study</div>
+        <p class="project-desc">MKTG 4350 research paper with full statistical analysis (SPSS, t-tests, Pearson correlations) on brand behavior and purchase intent.</p>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card reveal" onclick="window.open('https://mylifeadithi.my.canva.site/brand-marketting','_blank')">
+      <div class="project-card-img">
+        <svg class="placeholder-art" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#edf4e8"/>
+          <circle cx="200" cy="150" r="90" fill="none" stroke="#639922" stroke-width="1.2" opacity="0.4"/>
+          <circle cx="200" cy="150" r="65" fill="none" stroke="#639922" stroke-width="1" opacity="0.3"/>
+          <circle cx="200" cy="150" r="40" fill="#97C459" opacity="0.2"/>
+          <line x1="110" y1="150" x2="290" y2="150" stroke="#639922" stroke-width="0.8" opacity="0.4"/>
+          <line x1="200" y1="60" x2="200" y2="240" stroke="#639922" stroke-width="0.8" opacity="0.4"/>
+          <text x="200" y="155" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" fill="#3B6D11">LET'S PLAY</text>
+          <text x="200" y="172" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" fill="#3B6D11">AMERICA</text>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <div class="project-cat">IMC · Nonprofit</div>
+        <div class="project-title">Let's Play America IMC</div>
+        <p class="project-desc">Full integrated marketing communications plan for nonprofit LPA — media strategy, grant research, Canva presentation, and newsletter design.</p>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card reveal" onclick="window.open('https://mylifeadithi.my.canva.site/brand-marketting','_blank')">
+      <div class="project-card-img">
+        <svg class="placeholder-art" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#f0ede8"/>
+          <!-- Tennis racket lines -->
+          <ellipse cx="200" cy="135" rx="70" ry="85" fill="none" stroke="#888780" stroke-width="1.5" opacity="0.5"/>
+          <ellipse cx="200" cy="135" rx="55" ry="70" fill="none" stroke="#888780" stroke-width="1" opacity="0.4"/>
+          <line x1="200" y1="50" x2="200" y2="220" stroke="#888780" stroke-width="0.8" opacity="0.3"/>
+          <line x1="200" y1="220" x2="200" y2="270" stroke="#5F5E5A" stroke-width="3" opacity="0.6"/>
+          <line x1="130" y1="135" x2="270" y2="135" stroke="#888780" stroke-width="0.8" opacity="0.3"/>
+          <circle cx="200" cy="135" r="5" fill="#8b6fa8" opacity="0.6"/>
+          <text x="200" y="285" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="0.2em" fill="#888780">D1 · NO. 1 SINGLES</text>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <div class="project-cat">Athletics · Identity</div>
+        <div class="project-title">The Athlete Turned Marketer</div>
+        <p class="project-desc">4 years. No. 1 singles. Academic All-WAC twice. The discipline of Division I tennis is the foundation of every deadline I've hit and every team I've led.</p>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="project-card reveal" onclick="window.open('https://mylifeadithi.my.canva.site/brand-marketting','_blank')">
+      <div class="project-card-img">
+        <svg class="placeholder-art" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#f4edf1"/>
+          <rect x="80" y="70" width="240" height="160" rx="8" fill="white" opacity="0.7" stroke="#e8d0d8" stroke-width="1"/>
+          <rect x="100" y="90" width="160" height="12" rx="2" fill="#c4818e" opacity="0.4"/>
+          <rect x="100" y="112" width="200" height="8" rx="2" fill="#e8d0d8" opacity="0.7"/>
+          <rect x="100" y="128" width="180" height="8" rx="2" fill="#e8d0d8" opacity="0.5"/>
+          <rect x="100" y="155" width="60" height="30" rx="3" fill="#c4b5d4" opacity="0.5"/>
+          <rect x="175" y="155" width="60" height="30" rx="3" fill="#e8d0d8" opacity="0.5"/>
+          <text x="130" y="175" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#8b6fa8" letter-spacing="0.1em">PORTFOLIO</text>
+          <text x="205" y="175" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" fill="#c4818e" letter-spacing="0.1em">RESUME</text>
+        </svg>
+      </div>
+      <div class="project-card-body">
+        <div class="project-cat">Portfolio · Branding</div>
+        <div class="project-title">Personal Brand &amp; Portfolio</div>
+        <p class="project-desc">A sage green, blush pink, warm white aesthetic built in Canva and Figma — two mock campaigns, resume, and brand positioning all in one place.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<section class="education">
+  <div class="section-label">004 — Education</div>
+  <div class="edu-grid">
+    <div class="edu-item reveal">
+      <div class="edu-year">2022 – 2026</div>
+      <div class="edu-school">Sam Houston<br />State University</div>
+      <div class="edu-degree">BBA Marketing · NCAA D1 Tennis<br />Academic All-WAC &nbsp;·&nbsp; Dean's List</div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year">Skills &amp; Tools</div>
+      <div class="edu-school" style="font-size: 1.2rem; margin-bottom: 1rem;">Toolkit</div>
+      <div class="skills-row">
+        <span class="skill-tag">Brand Strategy</span>
+        <span class="skill-tag">SPSS</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Social Media</span>
+        <span class="skill-tag">IMC Planning</span>
+        <span class="skill-tag">Market Research</span>
+        <span class="skill-tag">Excel</span>
+        <span class="skill-tag">Event Mgmt</span>
+        <span class="skill-tag">Content Creation</span>
+        <span class="skill-tag">English</span>
+        <span class="skill-tag">Tamil</span>
+        <span class="skill-tag">Kannada</span>
+        <span class="skill-tag">Hindi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACKGROUND -->
+<section class="background-section">
+  <div class="bg-section-label">005 — My Story</div>
+  <div class="bg-headline">
+    Grew up between <em>Bangalore courts</em> and Texas campuses. Sport taught me everything I know about pressure, strategy, and showing up.
+  </div>
+  <div class="bg-body">
+    <p>
+      I was raised in Bangalore in a household where curiosity was the default mode. Tennis became my first serious education — it demanded discipline, quick adaptation, and knowing when to attack and when to hold. Those instincts translate directly into how I approach campaigns and brand challenges.
+    </p>
+    <p>
+      Competing at Division I level while earning Academic All-WAC honors twice taught me something simple: the best performers prepare obsessively and stay calm under pressure. I bring that to every brief, every pitch, every deadline. Marketing, to me, is a sport you never stop practicing.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-big" aria-hidden="true">THANK<br />YOU</div>
+    <div class="footer-copy">© 2026 · Adithi Venkatakrishnan</div>
+  </div>
+  <div class="footer-right">
+    <a href="mailto:vkadithi123@gmail.com">vkadithi123@gmail.com</a>
+    <a href="https://mylifeadithi.my.canva.site/brand-marketting" target="_blank">Portfolio →</a>
+    <a href="https://linkedin.com" target="_blank">LinkedIn →</a>
+    <span style="font-size:0.65rem; color: rgba(196,181,212,0.3); margin-top:0.8rem; letter-spacing:0.1em;">Bangalore &nbsp;·&nbsp; New York</span>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
