@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Event & Campaign Management — Adithi VK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--lavender:#8c2d3f;--lavender-pale:#f0e8e6;--lavender-deep:#6b1a2a;--blush:#d4a8a0;--blush-deep:#b07068;--cream:#faf7f4;--warm-white:#fdfbf9;--ink:#1a1214;--ink-muted:#3d2828;--ink-faint:#7a5f5f;--muted-lilac:#c4968e;}
+  html{scroll-behavior:smooth;}body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--ink);overflow-x:hidden;}a{text-decoration:none;color:inherit;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;background:rgba(253,251,249,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(140,45,63,0.15);}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}.nav-links a{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-muted);transition:color 0.3s;}.nav-links a:hover{color:var(--lavender-deep);}
+  .page-hero{min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 3rem 3rem;background:var(--ink);position:relative;overflow:hidden;}
+  .page-hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(4rem,14vw,14rem);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(140,45,63,0.18);white-space:nowrap;pointer-events:none;letter-spacing:-0.04em;}
+  .page-hero-tag{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:0.8rem;position:relative;}
+  .page-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,7vw,7rem);font-weight:300;line-height:0.9;letter-spacing:-0.02em;color:var(--cream);position:relative;}
+  .page-hero-title em{font-style:italic;color:var(--blush);}
+  .page-hero-sub{font-size:0.88rem;line-height:1.7;color:rgba(250,247,244,0.6);max-width:500px;margin-top:1.2rem;position:relative;}
+  .back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:2rem;transition:color 0.3s;position:relative;}.back-link:hover{color:var(--blush);}
+  .cs{padding:5rem 3rem;}.cs.cream{background:var(--cream);}.cs.white{background:var(--warm-white);}.cs.dark{background:var(--ink);color:var(--cream);}
+  .section-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--lavender-deep);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}.section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--lavender);}
+  .section-label.light{color:var(--muted-lilac);}.section-label.light::after{background:rgba(140,45,63,0.3);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .timeline{margin-top:1rem;}
+  .timeline-item{display:grid;grid-template-columns:120px 1fr;gap:2rem;padding:2rem 0;border-top:1px solid var(--lavender-pale);}
+  .timeline-item:last-child{border-bottom:1px solid var(--lavender-pale);}
+  .timeline-step{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--lavender-deep);line-height:1;}
+  .timeline-label{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.3rem;}
+  .timeline-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--ink);margin-bottom:0.5rem;}
+  .timeline-desc{font-size:0.83rem;line-height:1.75;color:var(--ink-muted);}
+  .card{border:1px solid var(--lavender-pale);border-radius:6px;padding:2rem;background:var(--warm-white);}
+  .card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:0.8rem;}
+  .card p{font-size:0.85rem;line-height:1.75;color:var(--ink-muted);}
+  .dark .card{background:rgba(255,255,255,0.04);border-color:rgba(140,45,63,0.25);}.dark .card h3{color:var(--cream);}.dark .card p{color:rgba(250,247,244,0.65);}
+  .pill{display:inline-block;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;border:1px solid var(--lavender);border-radius:100px;color:var(--lavender-deep);margin:0.25rem;}
+  .body-text{font-size:0.9rem;line-height:1.85;color:var(--ink-muted);margin-bottom:1.2rem;}
+  .big-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;line-height:1.2;color:var(--ink);letter-spacing:-0.02em;margin-bottom:2rem;}
+  .big-quote em{font-style:italic;color:var(--lavender-deep);}
+  .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+  footer{background:var(--ink);padding:3rem;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(140,45,63,0.15);}
+  .footer-big{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,6rem);font-weight:300;line-height:0.85;color:transparent;-webkit-text-stroke:1px rgba(140,45,63,0.25);letter-spacing:-0.04em;}
+  .footer-right{text-align:right;display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;}.footer-right a{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-lilac);transition:color 0.3s;}.footer-right a:hover{color:var(--cream);}
+  .footer-copy{font-size:0.65rem;color:rgba(196,150,142,0.3);margin-top:1rem;}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}.reveal.visible{opacity:1;transform:translateY(0);}
+  @media(max-width:768px){nav{padding:1.2rem 1.5rem;}.nav-links{display:none;}.cs{padding:3rem 1.5rem;}.page-hero{padding:7rem 1.5rem 2.5rem;}.two-col,.three-col{grid-template-columns:1fr;}.timeline-item{grid-template-columns:1fr;}footer{flex-direction:column;gap:2rem;align-items:flex-start;}.footer-right{align-items:flex-start;text-align:left;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">A.V.</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#certifications">Certifications</a></li>
+    <li><a href="https://mylifeadithi.my.canva.site/brand-marketting" target="_blank">Portfolio</a></li>
+    <li><a href="mailto:vkadithi123@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true">EVENTS</div>
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+  <div class="page-hero-tag">What I Do — 03</div>
+  <h1 class="page-hero-title">Event &amp; <em>Campaign</em><br />Management</h1>
+  <p class="page-hero-sub">End-to-end execution — vendor coordination, influencer outreach and tracking, performance monitoring, and brand-aligned delivery across live activations.</p>
+</div>
+
+<div class="cs cream">
+  <div class="section-label">The Process</div>
+  <div class="two-col">
+    <div class="reveal">
+      <div class="big-quote">Great events don't happen. They're <em>built</em> — detail by detail.</div>
+      <p class="body-text">At Social Sailor, I managed content timelines and social media calendars for brand activations and cultural festivals across major Indian cities. Multiple concurrent events, multiple stakeholders, one consistent brand experience.</p>
+      <p class="body-text">The D1 athlete in me thrives here — high pressure, tight deadlines, and no room for anything less than your best. Execution is where strategy becomes real.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div><div class="timeline-step">01</div><div class="timeline-label">Brief</div></div>
+        <div><div class="timeline-title">Strategy & Planning</div><div class="timeline-desc">Understanding the brand, the audience, and the objective. Building the content and campaign framework before a single post goes live.</div></div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="timeline-step">02</div><div class="timeline-label">Coordinate</div></div>
+        <div><div class="timeline-title">Team & Vendor Management</div><div class="timeline-desc">Aligning internal teams, external vendors, and creative stakeholders. Making sure everyone has what they need, when they need it.</div></div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="timeline-step">03</div><div class="timeline-label">Execute</div></div>
+        <div><div class="timeline-title">Live Activation & Delivery</div><div class="timeline-desc">Real-time content delivery, influencer coordination, and on-the-ground problem solving — keeping everything on-brand and on-schedule.</div></div>
+      </div>
+      <div class="timeline-item">
+        <div><div class="timeline-step">04</div><div class="timeline-label">Analyse</div></div>
+        <div><div class="timeline-title">Performance & Reporting</div><div class="timeline-desc">Monitoring results, tracking engagement, and feeding insights back into the next campaign cycle.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cs dark">
+  <div class="section-label light">Experience at Social Sailor</div>
+  <div class="three-col reveal">
+    <div class="card">
+      <h3>Brand Activations</h3>
+      <p>Planned and managed content timelines for brand activations across major Indian cities — ensuring timely, on-brand delivery across every touchpoint.</p>
+    </div>
+    <div class="card">
+      <h3>Influencer Management</h3>
+      <p>Supported influencer outreach, coordination, briefing, and performance tracking across multiple campaigns simultaneously.</p>
+    </div>
+    <div class="card">
+      <h3>Cultural Festivals</h3>
+      <p>Managed social content for large-scale cultural festival activations — coordinating across vendors, clients, and creative stakeholders under tight timelines.</p>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:2rem;">
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Event Planning</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Vendor Coordination</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Influencer Outreach</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Content Calendars</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Campaign Scripting</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Performance Tracking</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Stakeholder Management</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Competitive Research</span>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-big" aria-hidden="true">BACK<br/>TO<br/>WORK</div>
+    <div class="footer-copy">© 2026 · Adithi Venkatakrishnan</div>
+  </div>
+  <div class="footer-right">
+    <a href="index.html">← Back to Portfolio</a>
+    <a href="ux-design.html">Next: UX Design →</a>
+    <a href="mailto:vkadithi123@gmail.com">vkadithi123@gmail.com</a>
+  </div>
+</footer>
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(e => e.forEach(r => { if(r.isIntersecting) r.target.classList.add('visible'); }), {threshold:0.12});
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>

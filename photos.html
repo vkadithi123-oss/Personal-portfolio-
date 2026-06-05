@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Photos — Adithi VK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--lavender:#8c2d3f;--lavender-pale:#f0e8e6;--lavender-deep:#6b1a2a;--blush:#d4a8a0;--cream:#faf7f4;--warm-white:#fdfbf9;--ink:#1a1214;--ink-muted:#3d2828;--ink-faint:#7a5f5f;--muted-lilac:#c4968e;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;background:rgba(26,18,20,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(140,45,63,0.2);}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted-lilac);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted-lilac);transition:color 0.3s;}
+  .nav-links a:hover{color:var(--blush);}
+
+  .page-hero{padding:8rem 3rem 3rem;position:relative;overflow:hidden;}
+  .page-hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(6rem,18vw,18rem);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(212,168,160,0.12);white-space:nowrap;pointer-events:none;letter-spacing:-0.04em;}
+  .back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:2rem;transition:color 0.3s;}
+  .back-link:hover{color:var(--blush);}
+  .hero-tag{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:0.8rem;}
+  .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,8rem);font-weight:300;line-height:0.88;letter-spacing:-0.03em;color:var(--cream);}
+  .hero-title em{font-style:italic;color:var(--blush);}
+  .hero-sub{font-size:0.88rem;line-height:1.7;color:rgba(250,247,244,0.5);max-width:400px;margin-top:1.2rem;}
+
+  /* MASONRY GRID */
+  .gallery-section{padding:3rem 3rem 6rem;}
+  .masonry{columns:3;column-gap:1.2rem;}
+  .masonry-item{break-inside:avoid;margin-bottom:1.2rem;position:relative;overflow:hidden;border-radius:4px;cursor:pointer;}
+  .masonry-item img{width:100%;display:block;transition:transform 0.6s ease,filter 0.4s ease;filter:grayscale(10%);}
+  .masonry-item:hover img{transform:scale(1.04);filter:grayscale(0%);}
+  .masonry-item-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(to top,rgba(26,18,20,0.75),transparent);opacity:0;transition:opacity 0.4s ease;display:flex;align-items:flex-end;}
+  .masonry-item:hover .masonry-item-overlay{opacity:1;}
+  .masonry-item-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,247,244,0.8);}
+
+  /* PLACEHOLDER cards for photos not yet uploaded */
+  .photo-placeholder{background:rgba(140,45,63,0.08);border:1px solid rgba(140,45,63,0.2);border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1.5rem;text-align:center;cursor:pointer;transition:border-color 0.3s;}
+  .photo-placeholder:hover{border-color:rgba(212,168,160,0.4);}
+  .photo-placeholder-icon{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(212,168,160,0.3);margin-bottom:0.8rem;}
+  .photo-placeholder-text{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(212,168,160,0.4);}
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed;inset:0;background:rgba(26,18,20,0.95);z-index:200;display:none;align-items:center;justify-content:center;padding:2rem;}
+  .lightbox.active{display:flex;}
+  .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px;}
+  .lightbox-close{position:absolute;top:2rem;right:2rem;font-size:1.5rem;color:var(--muted-lilac);cursor:pointer;transition:color 0.3s;font-family:'Cormorant Garamond',serif;font-weight:300;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(140,45,63,0.3);border-radius:50%;}
+  .lightbox-close:hover{color:var(--blush);border-color:var(--blush);}
+  .lightbox-caption{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,247,244,0.5);}
+
+  /* HOW TO ADD PHOTOS note */
+  .add-photos-note{background:rgba(140,45,63,0.06);border:1px dashed rgba(140,45,63,0.25);border-radius:6px;padding:2rem;margin-bottom:3rem;}
+  .add-photos-note h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--blush);margin-bottom:0.5rem;}
+  .add-photos-note p{font-size:0.78rem;line-height:1.7;color:rgba(250,247,244,0.5);}
+  .add-photos-note code{background:rgba(140,45,63,0.2);padding:0.1rem 0.4rem;border-radius:3px;font-size:0.72rem;color:var(--blush);}
+
+  footer{padding:3rem;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(140,45,63,0.15);}
+  .footer-big{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,6rem);font-weight:300;line-height:0.85;color:transparent;-webkit-text-stroke:1px rgba(140,45,63,0.25);letter-spacing:-0.04em;}
+  .footer-right{text-align:right;display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;}
+  .footer-right a{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-lilac);transition:color 0.3s;}
+  .footer-right a:hover{color:var(--cream);}
+  .footer-copy{font-size:0.65rem;color:rgba(196,150,142,0.3);margin-top:1rem;}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media(max-width:768px){nav{padding:1.2rem 1.5rem;}.nav-links{display:none;}.masonry{columns:2;}.gallery-section{padding:2rem 1.5rem 4rem;}.page-hero{padding:7rem 1.5rem 2rem;}footer{flex-direction:column;gap:2rem;align-items:flex-start;}.footer-right{align-items:flex-start;text-align:left;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">A.V.</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="https://mylifeadithi.my.canva.site/brand-marketting" target="_blank">Portfolio</a></li>
+    <li><a href="mailto:vkadithi123@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true">PHOTOS</div>
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+  <div class="hero-tag">Adithi Venkatakrishnan</div>
+  <h1 class="hero-title">A glimpse<br />into my <em>world</em></h1>
+  <p class="hero-sub">On and off the court — a few frames from the journey so far.</p>
+</div>
+
+<div class="gallery-section">
+
+  <!-- HOW TO ADD YOUR PHOTOS -->
+  <div class="add-photos-note reveal">
+    <h3>Adding your photos</h3>
+    <p>Upload your images to GitHub alongside this file. Then replace each <code>src="your-photo-1.jpg"</code> below with your actual filenames. Delete the placeholder cards once you've added your photos. Click any photo to view it full screen.</p>
+  </div>
+
+  <div class="masonry reveal">
+
+    <!-- PHOTO 1 — replace src with your actual image filename -->
+    <div class="masonry-item" onclick="openLightbox(this)">
+      <img src="998021F6-8790-445D-8E12-9D1AFAFAD14B.JPG" alt="Adithi — tennis" onerror="this.parentElement.style.display='none'" />
+      <div class="masonry-item-overlay"><span class="masonry-item-label">On court · SHSU</span></div>
+    </div>
+
+    <!-- PLACEHOLDER — replace with: <div class="masonry-item" onclick="openLightbox(this)"><img src="your-photo-2.jpg" alt="..." /><div class="masonry-item-overlay"><span class="masonry-item-label">Your caption</span></div></div> -->
+    <div class="photo-placeholder" style="aspect-ratio:3/4;">
+      <div class="photo-placeholder-icon">+</div>
+      <div class="photo-placeholder-text">Add photo · replace this card</div>
+    </div>
+
+    <div class="photo-placeholder" style="aspect-ratio:1/1;">
+      <div class="photo-placeholder-icon">+</div>
+      <div class="photo-placeholder-text">Add photo · replace this card</div>
+    </div>
+
+    <div class="photo-placeholder" style="aspect-ratio:4/5;">
+      <div class="photo-placeholder-icon">+</div>
+      <div class="photo-placeholder-text">Add photo · replace this card</div>
+    </div>
+
+    <div class="photo-placeholder" style="aspect-ratio:3/4;">
+      <div class="photo-placeholder-icon">+</div>
+      <div class="photo-placeholder-text">Add photo · replace this card</div>
+    </div>
+
+    <div class="photo-placeholder" style="aspect-ratio:1/1;">
+      <div class="photo-placeholder-icon">+</div>
+      <div class="photo-placeholder-text">Add photo · replace this card</div>
+    </div>
+
+    <div class="photo-placeholder" style="aspect-ratio:4/3;">
+      <div class="photo-placeholder-icon">+</div>
+      <div class="photo-placeholder-text">Add photo · replace this card</div>
+    </div>
+
+    <div class="photo-placeholder" style="aspect-ratio:3/4;">
+      <div class="photo-placeholder-icon">+</div>
+      <div class="photo-placeholder-text">Add photo · replace this card</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <img id="lightbox-img" src="" alt="" />
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-big" aria-hidden="true">THAT'S<br/>ME</div>
+    <div class="footer-copy">© 2026 · Adithi Venkatakrishnan</div>
+  </div>
+  <div class="footer-right">
+    <a href="index.html">← Back to Portfolio</a>
+    <a href="mailto:vkadithi123@gmail.com">vkadithi123@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(e => e.forEach(r => { if(r.isIntersecting) r.target.classList.add('visible'); }), {threshold:0.1});
+  reveals.forEach(el => io.observe(el));
+
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    const label = el.querySelector('.masonry-item-label');
+    if (!img) return;
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-caption').textContent = label ? label.textContent : '';
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox(e) {
+    if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')}); });
+</script>
+</body>
+</html>
