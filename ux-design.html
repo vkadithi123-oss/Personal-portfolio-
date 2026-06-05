@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UX Design & Research — Adithi VK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--lavender:#8c2d3f;--lavender-pale:#f0e8e6;--lavender-deep:#6b1a2a;--blush:#d4a8a0;--blush-deep:#b07068;--cream:#faf7f4;--warm-white:#fdfbf9;--ink:#1a1214;--ink-muted:#3d2828;--ink-faint:#7a5f5f;--muted-lilac:#c4968e;}
+  html{scroll-behavior:smooth;}body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--ink);overflow-x:hidden;}a{text-decoration:none;color:inherit;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;background:rgba(253,251,249,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(140,45,63,0.15);}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}.nav-links a{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-muted);transition:color 0.3s;}.nav-links a:hover{color:var(--lavender-deep);}
+  .page-hero{min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 3rem 3rem;background:var(--ink);position:relative;overflow:hidden;}
+  .page-hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,16vw,16rem);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(140,45,63,0.18);white-space:nowrap;pointer-events:none;letter-spacing:-0.04em;}
+  .page-hero-tag{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:0.8rem;position:relative;}
+  .page-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,7vw,7rem);font-weight:300;line-height:0.9;letter-spacing:-0.02em;color:var(--cream);position:relative;}
+  .page-hero-title em{font-style:italic;color:var(--blush);}
+  .page-hero-sub{font-size:0.88rem;line-height:1.7;color:rgba(250,247,244,0.6);max-width:500px;margin-top:1.2rem;position:relative;}
+  .back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:2rem;transition:color 0.3s;position:relative;}.back-link:hover{color:var(--blush);}
+  .cs{padding:5rem 3rem;}.cs.cream{background:var(--cream);}.cs.white{background:var(--warm-white);}.cs.dark{background:var(--ink);color:var(--cream);}
+  .section-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--lavender-deep);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}.section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--lavender);}
+  .section-label.light{color:var(--muted-lilac);}.section-label.light::after{background:rgba(140,45,63,0.3);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+  .process-card{border:1px solid var(--lavender-pale);border-radius:6px;padding:1.8rem;background:var(--warm-white);position:relative;}
+  .process-card::after{content:'→';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);color:var(--lavender-deep);font-size:1.2rem;z-index:1;}
+  .process-card:last-child::after{display:none;}
+  .process-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--lavender-pale);line-height:1;margin-bottom:0.8rem;}
+  .process-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink);margin-bottom:0.5rem;}
+  .process-desc{font-size:0.78rem;line-height:1.65;color:var(--ink-muted);}
+  .card{border:1px solid var(--lavender-pale);border-radius:6px;padding:2rem;background:var(--warm-white);}
+  .card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:0.8rem;}
+  .card p{font-size:0.85rem;line-height:1.75;color:var(--ink-muted);}
+  .dark .card{background:rgba(255,255,255,0.04);border-color:rgba(140,45,63,0.25);}.dark .card h3{color:var(--cream);}.dark .card p{color:rgba(250,247,244,0.65);}
+  .pill{display:inline-block;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;border:1px solid var(--lavender);border-radius:100px;color:var(--lavender-deep);margin:0.25rem;}
+  .body-text{font-size:0.9rem;line-height:1.85;color:var(--ink-muted);margin-bottom:1.2rem;}
+  .big-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;line-height:1.2;color:var(--ink);letter-spacing:-0.02em;margin-bottom:2rem;}
+  .big-quote em{font-style:italic;color:var(--lavender-deep);}
+  .cert-highlight{border:1px solid var(--lavender-deep);border-radius:6px;padding:2.5rem;background:var(--lavender-pale);text-align:center;margin-top:2rem;}
+  .cert-highlight h2{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--lavender-deep);margin-bottom:0.5rem;}
+  .cert-highlight p{font-size:0.85rem;color:var(--ink-muted);}
+  footer{background:var(--ink);padding:3rem;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(140,45,63,0.15);}
+  .footer-big{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,6rem);font-weight:300;line-height:0.85;color:transparent;-webkit-text-stroke:1px rgba(140,45,63,0.25);letter-spacing:-0.04em;}
+  .footer-right{text-align:right;display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;}.footer-right a{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-lilac);transition:color 0.3s;}.footer-right a:hover{color:var(--cream);}
+  .footer-copy{font-size:0.65rem;color:rgba(196,150,142,0.3);margin-top:1rem;}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}.reveal.visible{opacity:1;transform:translateY(0);}
+  @media(max-width:768px){nav{padding:1.2rem 1.5rem;}.nav-links{display:none;}.cs{padding:3rem 1.5rem;}.page-hero{padding:7rem 1.5rem 2.5rem;}.two-col,.four-col{grid-template-columns:1fr 1fr;}.process-card::after{display:none;}footer{flex-direction:column;gap:2rem;align-items:flex-start;}.footer-right{align-items:flex-start;text-align:left;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">A.V.</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#certifications">Certifications</a></li>
+    <li><a href="https://mylifeadithi.my.canva.site/brand-marketting" target="_blank">Portfolio</a></li>
+    <li><a href="mailto:vkadithi123@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true">DESIGN</div>
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+  <div class="page-hero-tag">What I Do — 04</div>
+  <h1 class="page-hero-title">UX Design &amp;<br /><em>Research</em></h1>
+  <p class="page-hero-sub">Google-certified in UX — wireframing, user-centered design thinking, and requirements gathering that translate consumer behavior into brand experiences.</p>
+</div>
+
+<div class="cs cream">
+  <div class="section-label">The Process</div>
+  <div class="four-col reveal">
+    <div class="process-card">
+      <div class="process-num">01</div>
+      <div class="process-title">Empathise</div>
+      <p class="process-desc">Understanding users through research — who they are, what they need, and what frustrates them.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-num">02</div>
+      <div class="process-title">Define</div>
+      <p class="process-desc">Framing the problem clearly — turning user insight into a sharp design challenge.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-num">03</div>
+      <div class="process-title">Ideate</div>
+      <p class="process-desc">Generating ideas and concepts — thinking broadly before narrowing to what works.</p>
+    </div>
+    <div class="process-card">
+      <div class="process-num">04</div>
+      <div class="process-title">Prototype & Test</div>
+      <p class="process-desc">Building wireframes, testing with users, and iterating until the experience is right.</p>
+    </div>
+  </div>
+</div>
+
+<div class="cs white">
+  <div class="section-label">UX Meets Brand</div>
+  <div class="two-col">
+    <div class="reveal">
+      <div class="big-quote">Good UX and good branding are the same thing — making people feel <em>understood.</em></div>
+      <p class="body-text">I approach UX through a marketer's lens. Every interaction a user has with a brand is a brand moment — and it should feel intentional, consistent, and human.</p>
+      <p class="body-text">Google's UX Design certification gave me the formal framework. My background in brand marketing gives me the strategic lens. Together, they mean I design for both the user and the brand simultaneously.</p>
+      <div class="cert-highlight reveal">
+        <h2>Google Certified</h2>
+        <p>Foundations of UX Design — Google Career Certificates<br/>UX research · Wireframing · User-centered design thinking</p>
+      </div>
+    </div>
+    <div>
+      <div class="card reveal" style="margin-bottom:1.2rem;">
+        <h3>UX Research</h3>
+        <p>User interviews, surveys, usability testing, and affinity mapping — understanding real behavior rather than assumed behavior.</p>
+      </div>
+      <div class="card reveal" style="margin-bottom:1.2rem;">
+        <h3>Wireframing</h3>
+        <p>Low and high-fidelity wireframes using Figma — translating user needs into clear, navigable layouts before any visual design begins.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Requirements Gathering</h3>
+        <p>Bridging business goals and user needs — defining clear requirements that align stakeholders and give designers a strong brief to work from.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cs dark">
+  <div class="section-label light">Tools & Skills</div>
+  <div class="reveal" style="margin-bottom:2rem;">
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Figma</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Wireframing</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">User Research</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Usability Testing</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Design Thinking</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Requirements Gathering</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Process Mapping</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Stakeholder Alignment</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Google UX Certificate</span>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-big" aria-hidden="true">BACK<br/>TO<br/>WORK</div>
+    <div class="footer-copy">© 2026 · Adithi Venkatakrishnan</div>
+  </div>
+  <div class="footer-right">
+    <a href="index.html">← Back to Portfolio</a>
+    <a href="brand-marketing.html">← Brand Marketing</a>
+    <a href="mailto:vkadithi123@gmail.com">vkadithi123@gmail.com</a>
+  </div>
+</footer>
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(e => e.forEach(r => { if(r.isIntersecting) r.target.classList.add('visible'); }), {threshold:0.12});
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
