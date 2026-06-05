@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brand Marketing & Strategy — Adithi VK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--lavender:#8c2d3f;--lavender-pale:#f0e8e6;--lavender-deep:#6b1a2a;--blush:#d4a8a0;--blush-deep:#b07068;--cream:#faf7f4;--warm-white:#fdfbf9;--ink:#1a1214;--ink-muted:#3d2828;--ink-faint:#7a5f5f;--muted-lilac:#c4968e;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--warm-white);color:var(--ink);overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 3rem;background:rgba(253,251,249,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(140,45,63,0.15);}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-muted);transition:color 0.3s;}
+  .nav-links a:hover{color:var(--lavender-deep);}
+  .page-hero{min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 3rem 3rem;background:var(--ink);position:relative;overflow:hidden;}
+  .page-hero-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,16vw,16rem);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(140,45,63,0.18);white-space:nowrap;pointer-events:none;letter-spacing:-0.04em;}
+  .page-hero-tag{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:0.8rem;position:relative;}
+  .page-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,7vw,7rem);font-weight:300;line-height:0.9;letter-spacing:-0.02em;color:var(--cream);position:relative;}
+  .page-hero-title em{font-style:italic;color:var(--blush);}
+  .page-hero-sub{font-size:0.88rem;line-height:1.7;color:rgba(250,247,244,0.6);max-width:500px;margin-top:1.2rem;position:relative;}
+  .back-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted-lilac);margin-bottom:2rem;transition:color 0.3s;position:relative;}
+  .back-link:hover{color:var(--blush);}
+  .cs{padding:5rem 3rem;}
+  .cs.cream{background:var(--cream);}
+  .cs.white{background:var(--warm-white);}
+  .cs.dark{background:var(--ink);color:var(--cream);}
+  .section-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--lavender-deep);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;}
+  .section-label::after{content:'';flex:1;max-width:60px;height:1px;background:var(--lavender);}
+  .section-label.light{color:var(--muted-lilac);}
+  .section-label.light::after{background:rgba(140,45,63,0.3);}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+  .big-stat{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,7rem);font-weight:300;line-height:0.9;color:var(--lavender-deep);letter-spacing:-0.03em;}
+  .big-stat-label{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.5rem;}
+  .card{border:1px solid var(--lavender-pale);border-radius:6px;padding:2rem;background:var(--warm-white);}
+  .card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--ink);margin-bottom:0.8rem;}
+  .card p{font-size:0.85rem;line-height:1.75;color:var(--ink-muted);}
+  .dark .card{background:rgba(255,255,255,0.04);border-color:rgba(140,45,63,0.25);}
+  .dark .card h3{color:var(--cream);}
+  .dark .card p{color:rgba(250,247,244,0.65);}
+  .pill{display:inline-block;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;border:1px solid var(--lavender);border-radius:100px;color:var(--lavender-deep);margin:0.25rem;}
+  .body-text{font-size:0.9rem;line-height:1.85;color:var(--ink-muted);margin-bottom:1.2rem;}
+  .big-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;line-height:1.2;color:var(--ink);letter-spacing:-0.02em;margin-bottom:2rem;}
+  .big-quote em{font-style:italic;color:var(--lavender-deep);}
+  .divider{height:1px;background:var(--lavender-pale);margin:3rem 0;}
+  .bullet-list{list-style:none;padding:0;}
+  .bullet-list li{font-size:0.85rem;line-height:1.8;color:var(--ink-muted);padding-left:1.2rem;position:relative;margin-bottom:0.6rem;}
+  .bullet-list li::before{content:'—';position:absolute;left:0;color:var(--lavender-deep);font-size:0.75rem;}
+  footer{background:var(--ink);padding:3rem;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid rgba(140,45,63,0.15);}
+  .footer-big{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,6vw,6rem);font-weight:300;line-height:0.85;color:transparent;-webkit-text-stroke:1px rgba(140,45,63,0.25);letter-spacing:-0.04em;}
+  .footer-right{text-align:right;display:flex;flex-direction:column;gap:0.5rem;align-items:flex-end;}
+  .footer-right a{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-lilac);transition:color 0.3s;}
+  .footer-right a:hover{color:var(--cream);}
+  .footer-copy{font-size:0.65rem;color:rgba(196,150,142,0.3);margin-top:1rem;}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  @media(max-width:768px){nav{padding:1.2rem 1.5rem;}.nav-links{display:none;}.cs{padding:3rem 1.5rem;}.page-hero{padding:7rem 1.5rem 2.5rem;}.two-col,.three-col{grid-template-columns:1fr;}footer{flex-direction:column;gap:2rem;align-items:flex-start;}.footer-right{align-items:flex-start;text-align:left;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">A.V.</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#projects">Projects</a></li>
+    <li><a href="index.html#certifications">Certifications</a></li>
+    <li><a href="https://mylifeadithi.my.canva.site/brand-marketting" target="_blank">Portfolio</a></li>
+    <li><a href="mailto:vkadithi123@gmail.com">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" aria-hidden="true">BRAND</div>
+  <a href="index.html" class="back-link">← Back to Portfolio</a>
+  <div class="page-hero-tag">What I Do — 01</div>
+  <h1 class="page-hero-title">Brand <em>Marketing</em><br />&amp; Strategy</h1>
+  <p class="page-hero-sub">Positioning brands to resonate — from identity systems and go-to-market campaigns to competitive research grounded in real consumer insight.</p>
+</div>
+
+<div class="cs cream">
+  <div class="section-label">The Approach</div>
+  <div class="two-col">
+    <div class="reveal">
+      <div class="big-quote">Brands don't just sell products. They make people <em>feel</em> something.</div>
+      <p class="body-text">My approach to brand marketing starts with understanding people — what they care about, what they scroll past, and what makes them stop. From there, everything else follows: the positioning, the messaging, the visual world.</p>
+      <p class="body-text">Having competed as a D1 athlete, I understand brand loyalty from both sides. I know what it feels like to believe in something bigger than yourself — and I bring that understanding to every brief.</p>
+    </div>
+    <div>
+      <div class="card reveal" style="margin-bottom:1.5rem;">
+        <h3>IIM Bengaluru Certified</h3>
+        <p>Completed Marketing Management through IIM Bengaluru via edX — covering brand positioning, market segmentation, consumer behavior, and competitive analysis.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Real Campaign Experience</h3>
+        <p>Managed brand activations and social campaigns at Social Sailor across major Indian cities — coordinating creative, vendors, and client messaging simultaneously.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cs white">
+  <div class="section-label">What I Bring</div>
+  <div class="three-col">
+    <div class="reveal">
+      <div class="big-stat">01</div>
+      <div class="big-stat-label">Positioning & Messaging</div>
+      <div class="divider"></div>
+      <ul class="bullet-list">
+        <li>Developing brand positioning frameworks that differentiate in crowded markets</li>
+        <li>Crafting messaging hierarchies from brand promise to campaign taglines</li>
+        <li>Tone of voice guidelines and brand personality definition</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="big-stat">02</div>
+      <div class="big-stat-label">Research & Insight</div>
+      <div class="divider"></div>
+      <ul class="bullet-list">
+        <li>Consumer behavior research using surveys, interviews, and data analysis</li>
+        <li>Competitive landscape mapping and opportunity identification</li>
+        <li>Trend monitoring across sports, lifestyle, and Gen Z culture</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="big-stat">03</div>
+      <div class="big-stat-label">Strategy & Execution</div>
+      <div class="divider"></div>
+      <ul class="bullet-list">
+        <li>Go-to-market planning from concept to launch</li>
+        <li>Campaign briefs, timelines, and stakeholder alignment</li>
+        <li>Performance tracking and post-campaign analysis</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="cs dark">
+  <div class="section-label light">Tools & Skills</div>
+  <div class="reveal" style="margin-bottom:2rem;">
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Brand Strategy</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Market Research</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Consumer Insight</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Competitive Analysis</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Campaign Planning</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Stakeholder Management</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">IIM Marketing Management</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Excel</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Canva</span>
+    <span class="pill" style="border-color:rgba(140,45,63,0.4);color:var(--blush);">Figma</span>
+  </div>
+  <div class="two-col reveal">
+    <div class="card">
+      <h3>The Athlete Advantage</h3>
+      <p>Four years as a D1 tennis athlete taught me that strategy without execution is nothing. I bring the same competitive mindset — preparation, adaptability, and pressure performance — to every brand challenge.</p>
+    </div>
+    <div class="card">
+      <h3>Culturally Fluent</h3>
+      <p>Speaking four languages (English, Tamil, Kannada, Hindi) and having lived between Bangalore and Texas gives me a genuine cross-cultural lens. I don't just understand markets — I understand people within them.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-big" aria-hidden="true">BACK<br/>TO<br/>WORK</div>
+    <div class="footer-copy">© 2026 · Adithi Venkatakrishnan</div>
+  </div>
+  <div class="footer-right">
+    <a href="index.html">← Back to Portfolio</a>
+    <a href="social-media.html">Next: Social Media →</a>
+    <a href="mailto:vkadithi123@gmail.com">vkadithi123@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(e => e.forEach(r => { if(r.isIntersecting) r.target.classList.add('visible'); }), {threshold:0.12});
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
